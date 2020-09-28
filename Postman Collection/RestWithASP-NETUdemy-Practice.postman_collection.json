@@ -20,7 +20,7 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{host}}:{{port}}/api/user",
+							"raw": "https://{{host}}:{{port}}/api/user/v1",
 							"protocol": "https",
 							"host": [
 								"{{host}}"
@@ -28,7 +28,8 @@
 							"port": "{{port}}",
 							"path": [
 								"api",
-								"user"
+								"user",
+								"v1"
 							]
 						}
 					},
@@ -46,7 +47,7 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{host}}:{{port}}/api/user/2",
+							"raw": "https://{{host}}:{{port}}/api/user/v1/2",
 							"protocol": "https",
 							"host": [
 								"{{host}}"
@@ -55,6 +56,7 @@
 							"path": [
 								"api",
 								"user",
+								"v1",
 								"2"
 							],
 							"query": [
@@ -80,7 +82,7 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{host}}:{{port}}/api/user/2",
+							"raw": "https://{{host}}:{{port}}/api/user/v1/2",
 							"protocol": "https",
 							"host": [
 								"{{host}}"
@@ -89,6 +91,7 @@
 							"path": [
 								"api",
 								"user",
+								"v1",
 								"2"
 							]
 						}
@@ -111,7 +114,7 @@
 							"raw": "{\r\n    \"name\": \"Lola\",\r\n    \"birth\": \"2018-08-03T00:00:00\",\r\n    \"phoneNumber\": \"959178598\"\r\n}"
 						},
 						"url": {
-							"raw": "https://{{host}}:{{port}}/api/user",
+							"raw": "https://{{host}}:{{port}}/api/user/v1",
 							"protocol": "https",
 							"host": [
 								"{{host}}"
@@ -119,7 +122,8 @@
 							"port": "{{port}}",
 							"path": [
 								"api",
-								"user"
+								"user",
+								"v1"
 							]
 						}
 					},
@@ -141,7 +145,7 @@
 							"raw": "{\r\n    \"id\": 3,\r\n    \"name\": \"Emily Blunt\",\r\n    \"birth\": \"1980-03-21T00:00:00\",\r\n    \"phoneNumber\": \"955897748\"\r\n}"
 						},
 						"url": {
-							"raw": "https://{{host}}:{{port}}/api/user",
+							"raw": "https://{{host}}:{{port}}/api/user/v1",
 							"protocol": "https",
 							"host": [
 								"{{host}}"
@@ -149,7 +153,8 @@
 							"port": "{{port}}",
 							"path": [
 								"api",
-								"user"
+								"user",
+								"v1"
 							]
 						}
 					},
