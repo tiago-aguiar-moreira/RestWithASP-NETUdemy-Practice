@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using ImplementsHATEOAS.Hypermedia.Filters;
 using ImplementsHATEOAS.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -44,12 +45,15 @@ namespace ImplementsHATEOAS.Controllers
         }
 
         [HttpGet]
+        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Get() => new OkObjectResult(Users);
         
         [HttpGet("{id}")]
+        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Get(int id) => new OkObjectResult(Users.FirstOrDefault(f => f.Id == id));
 
         [HttpPost]
+        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Post([FromBody]User user)
         {
             if(user == null)
@@ -63,6 +67,7 @@ namespace ImplementsHATEOAS.Controllers
         }
 
         [HttpPut]
+        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Put([FromBody]User user)
         {
             if(user == null)
@@ -78,6 +83,7 @@ namespace ImplementsHATEOAS.Controllers
         }
 
         [HttpDelete("{id}")]
+        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Delete(int id)
         {
             if(id <= 0)
