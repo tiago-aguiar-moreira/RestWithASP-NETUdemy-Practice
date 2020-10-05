@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        
+        <script src="jquery-3.5.1.min.js"></script>
+
+        <style type="text/css">
+            html { height: 100% }
+            body { height: 100%; margin: 0; padding: 0 }
+    
+            input[type=button] {
+            width: 25%;
+            height: 40px;
+            margin: 10px 5px;
+            box-sizing: border-box;
+            }
+        </style>
+
+        <script type="text/javascript">
+            function downloadFetchAPI () {
+
+                let fnGetFileNameFromContentDispostionHeader = function (header) {
+                    let contentDispostion = header.split(';');
+                    const fileNameToken = `filename*=UTF-8''`;
+
+                    let fileName = 'downloaded.pdf';
+                    for (let thisValue of contentDispostion) {
+                        if (thisValue.trim().indexOf(fileNameToken) === 0) {
+                            fileName = decodeURIComponent(thisValue.trim().replace(fileNameToken, ''));
+                            break;
+                        }
+                    }
+
+                    return fileName;
+                };
+
+                let headers = new Headers();
+                headers.append('Content-Type', 'application/json');
+
+                fetch('https://localhost:5001/Report/v1', {
+                    method: 'GET',
+                    headers: headers,
+                    mode: 'no-cors'
+                })
+                .then(response => { 
+                    console.log(response);
+                    response.blob();
+                })
+                // .then(async res => 
+                // ({
+                //     filename: fnGetFileNameFromContentDispostionHeader(res.headers.get('content-disposition')),
+                //     blob: await res.blob()
+                // }))
+                .then(response => {
+                    //debugger
+                    // It is necessary to create a new blob object with mime-type explicitly set for all browsers except Chrome, but it works for Chrome too.
+                    const newBlob = new Blob([response.blob], { type: 'application/pdf' });
+
+                    // MS Edge and IE don't allow using a blob object directly as link href, instead it is necessary to use msSaveOrOpenBlob
+                    if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+                        window.navigator.msSaveOrOpenBlob(newBlob);
+                    } else {
+                        // For other browsers: create a link pointing to the ObjectURL containing the blob.
+                        const objUrl = window.URL.createObjectURL(newBlob);
+
+                        let link = document.createElement('a');
+                        link.href = objUrl;
+                        link.download = response.filename;
+                        link.click();
+
+                        // For Firefox it is necessary to delay revoking the ObjectURL.
+                        setTimeout(() => { window.URL.revokeObjectURL(objUrl); }, 250);
+                    }
+                })
+                .catch((error) => {
+                    console.log('DOWNLOAD ERROR', error);
+                });
+            }
+
+            function downloadJquery () {
+                $.ajax({
+                    url: "https://localhost:5001/Report/v1",
+                    type: "GET",
+                    crossDomain: true,
+                    beforeSend: function(xhr) {
+                        xhr.withCredentials = true;
+                    },
+                    success: function(data, textStatus, request){
+                        console.log(data);
+                    }
+                })
+            }
+
+            function downloadAjax () {
+                var xhttp = new XMLHttpRequest();
+
+                xhttp.onreadystatechange = function() {
+                    console.log(this);
+                    if (this.readyState == 4 && this.status == 200) {
+                    
+                    }
+                };
+
+                xhttp.open("GET", "https://localhost:5001/Report/v1", true);
+                xhttp.send();
+            }
+        </script>
+    </head>
+    <body>
+        <div>
+            <input type="button" id="down1" onclick="downloadFetchAPI()" value="Download (FetchAPI)"/>
+            <input type="button" id="down2" onclick="downloadJquery()" value="Download (jQuery)"/>
+            <input type="button" id="down3" onclick="downloadAjax()" value="Download (Ajax)"/>
+        </div>
+    </body>
+</html>
