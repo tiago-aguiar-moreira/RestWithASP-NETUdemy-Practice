@@ -26,6 +26,7 @@ namespace SendFiles
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,6 +40,16 @@ namespace SendFiles
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(option => 
+            {
+                option
+                    .AllowAnyOrigin()
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    // .AllowCredentials()
+                    ;
+            });
 
             app.UseAuthorization();
 
