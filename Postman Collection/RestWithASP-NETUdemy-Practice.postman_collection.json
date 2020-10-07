@@ -167,6 +167,72 @@
 			"name": "Authentication",
 			"item": [],
 			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Files",
+			"item": [
+				{
+					"name": "Get File PDF - V1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{host}}:{{port}}/Report/v1",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"Report",
+								"v1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get File PDF - V2",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{host}}:{{port}}/Report/v2",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"Report",
+								"v2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get File PDF - V3",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{host}}:{{port}}/Report/v3",
+							"protocol": "https",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"Report",
+								"v3"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
 		}
 	],
 	"event": [
