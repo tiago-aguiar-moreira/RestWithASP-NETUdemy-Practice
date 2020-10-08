@@ -28,6 +28,7 @@ namespace ImplementsHATEOAS
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddCors();
             services.AddApiVersioning(config =>
             {
                 config.DefaultApiVersion = new ApiVersion(1, 0);
@@ -51,6 +52,14 @@ namespace ImplementsHATEOAS
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(option =>
+            {
+                option
+                    .AllowAnyOrigin()
+                    .AllowAnyHeader()
+                    .AllowAnyMethod();
+            });
 
             app.UseAuthorization();
 

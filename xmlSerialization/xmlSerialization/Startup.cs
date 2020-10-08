@@ -27,6 +27,7 @@ namespace xmlSerialization
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddCors();
 
             services.AddMvc(options => {
                 options.RespectBrowserAcceptHeader = true;
@@ -47,6 +48,14 @@ namespace xmlSerialization
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(option =>
+            {
+                option
+                    .AllowAnyOrigin()
+                    .AllowAnyHeader()
+                    .AllowAnyMethod();
+            });
 
             app.UseAuthorization();
 
