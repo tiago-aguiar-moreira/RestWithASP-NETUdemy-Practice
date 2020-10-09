@@ -6,6 +6,72 @@
 	},
 	"item": [
 		{
+			"name": "Files",
+			"item": [
+				{
+					"name": "Get File PDF - V1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{host}}:{{port}}/Report/v1",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"Report",
+								"v1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get File PDF - V2",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{host}}:{{port}}/Report/v2",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"Report",
+								"v2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get File PDF - V3",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{host}}:{{port}}/Report/v3",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"Report",
+								"v3"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
 			"name": "User",
 			"item": [
 				{
@@ -20,8 +86,8 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{host}}:{{port}}/api/user/v1",
-							"protocol": "https",
+							"raw": "http://{{host}}:{{port}}/api/user/v1",
+							"protocol": "http",
 							"host": [
 								"{{host}}"
 							],
@@ -47,8 +113,8 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{host}}:{{port}}/api/user/v1/2",
-							"protocol": "https",
+							"raw": "http://{{host}}:{{port}}/api/user/v1/2",
+							"protocol": "http",
 							"host": [
 								"{{host}}"
 							],
@@ -82,8 +148,8 @@
 							}
 						],
 						"url": {
-							"raw": "https://{{host}}:{{port}}/api/user/v1/2",
-							"protocol": "https",
+							"raw": "http://{{host}}:{{port}}/api/user/v1/2",
+							"protocol": "http",
 							"host": [
 								"{{host}}"
 							],
@@ -114,8 +180,8 @@
 							"raw": "{\r\n    \"name\": \"Lola\",\r\n    \"birth\": \"2018-08-03T00:00:00\",\r\n    \"phoneNumber\": \"959178598\"\r\n}"
 						},
 						"url": {
-							"raw": "https://{{host}}:{{port}}/api/user/v1",
-							"protocol": "https",
+							"raw": "http://{{host}}:{{port}}/api/user/v1",
+							"protocol": "http",
 							"host": [
 								"{{host}}"
 							],
@@ -145,8 +211,8 @@
 							"raw": "{\r\n    \"id\": 3,\r\n    \"name\": \"Emily Blunt\",\r\n    \"birth\": \"1980-03-21T00:00:00\",\r\n    \"phoneNumber\": \"955897748\"\r\n}"
 						},
 						"url": {
-							"raw": "https://{{host}}:{{port}}/api/user/v1",
-							"protocol": "https",
+							"raw": "http://{{host}}:{{port}}/api/user/v1",
+							"protocol": "http",
 							"host": [
 								"{{host}}"
 							],
@@ -164,68 +230,217 @@
 			"protocolProfileBehavior": {}
 		},
 		{
-			"name": "Authentication",
+			"name": "Authentication - OAuth 2.0",
 			"item": [],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "8e0263b6-5efe-4cd3-b863-3c20a2303b01",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "846d6cc7-f952-417c-b45b-5bfecf1b185b",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
 			"protocolProfileBehavior": {}
 		},
 		{
-			"name": "Files",
+			"name": "Authentication - JWT",
 			"item": [
 				{
-					"name": "Get File PDF - V1",
+					"name": "Get car by id",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer_token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://{{host}}:{{port}}/Report/v1",
-							"protocol": "https",
+							"raw": "http://{{host}}:{{port}}/api/car/1",
+							"protocol": "http",
 							"host": [
 								"{{host}}"
 							],
 							"port": "{{port}}",
 							"path": [
-								"Report",
-								"v1"
+								"api",
+								"car",
+								"1"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Get File PDF - V2",
+					"name": "Lista all cars",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer_token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://{{host}}:{{port}}/Report/v2",
-							"protocol": "https",
+							"raw": "http://{{host}}:{{port}}/api/car",
+							"protocol": "http",
 							"host": [
 								"{{host}}"
 							],
 							"port": "{{port}}",
 							"path": [
-								"Report",
-								"v2"
+								"api",
+								"car"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Get File PDF - V3",
+					"name": "Authenticate",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "eff854a8-be57-4c10-b4fb-a407cc5bcad5",
+								"exec": [
+									"if(responseCode.code >= 200 && responseCode.code <= 299) {\r",
+									"    var jsonData = JSON.parse(responseBody);\r",
+									"\r",
+									"    postman.setEnvironmentVariable('bearer_token', jsonData.token);\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"batman\",\r\n    \"password\":\"batman\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "https://{{host}}:{{port}}/Report/v3",
-							"protocol": "https",
+							"raw": "http://{{host}}:{{port}}/api/account/login",
+							"protocol": "http",
 							"host": [
 								"{{host}}"
 							],
 							"port": "{{port}}",
 							"path": [
-								"Report",
-								"v3"
+								"api",
+								"account",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get user by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{bearer_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://{{host}}:{{port}}/api/user/1",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"user",
+								"1"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lista all users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{bearer_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://{{host}}:{{port}}/api/user",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"user"
 							]
 						}
 					},
